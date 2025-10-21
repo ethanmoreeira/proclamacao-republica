@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco da República | Quiz</title>
+    <meta name="description" content="Eco da República — teste seus conhecimentos sobre a Proclamação com um quiz interativo.">
+    <meta name="keywords" content="quiz, Proclamação República, teste conhecimento, educação histórica, Brasil 1889">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/a11y.css">
+    
+    <style>
+        /* Estilos específicos do Quiz */
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--espacamento-xl) 0;
+        }
+        
+        .quiz-header {
+            text-align: center;
+            margin-bottom: var(--espacamento-xl);
+        }
+        
+        .quiz-header h1 {
+            color: var(--verde);
+            font-family: var(--fonte-titulo);
+            font-size: 2.5rem;
+            margin-bottom: var(--espacamento-sm);
+        }
+        
+        .quiz-header p {
+            font-size: 1.2rem;
+            color: var(--cinza-medio);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .quiz-progress-container {
+            margin-bottom: var(--espacamento-xl);
+        }
+        
+        .quiz-progress {
+            background: var(--cinza-claro);
+            height: 12px;
+            border-radius: 6px;
+            margin-bottom: var(--espacamento-sm);
+            overflow: hidden;
+        }
+        
+        .quiz-progress-fill {
+            background: linear-gradient(90deg, var(--verde), var(--amarelo));
+            height: 100%;
+            border-radius: 6px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+        
+        .quiz-progress-text {
+            text-align: center;
+            font-weight: 600;
+            color: var(--verde);
+        }
+        
+        .quiz-question-container {
+            background: var(--branco);
+            padding: var(--espacamento-xl);
+            border-radius: var(--borda-radius);
+            box-shadow: var(--sombra-leve);
+            margin-bottom: var(--espacamento-lg);
+        }
+        
+        .quiz-question h2 {
+            color: var(--verde);
+            font-family: var(--fonte-titulo);
+            font-size: 1.5rem;
+            margin-bottom: var(--espacamento-lg);
+            line-height: 1.4;
+        }
+        
+        .options-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .option-item {
+            margin-bottom: var(--espacamento-sm);
+        }
+        
+        .option-button {
+            width: 100%;
+            padding: var(--espacamento-md);
+            background: var(--cinza-claro);
+            border: 2px solid var(--cinza-claro);
+            border-radius: var(--borda-radius);
+            cursor: pointer;
+            transition: var(--transicao-normal);
+            text-align: left;
+            font-size: 1rem;
+            font-family: var(--fonte-texto);
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option-button:hover {
+            border-color: var(--amarelo);
+            background: rgba(251, 192, 45, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .option-button.selected {
+            border-color: var(--verde);
+            background: var(--verde);
+            color: var(--branco);
+        }
+        
+        .option-button.correct {
+            border-color: #27ae60;
+            background: #27ae60;
+            color: var(--branco);
+        }
+        
+        .option-button.incorrect {
+            border-color: var(--vermelho);
+            background: var(--vermelho);
+            color: var(--branco);
+        }
+        
+        .quiz-controls {
+            display: flex;
+            justify-content: space-between;
+            gap: var(--espacamento-sm);
+            flex-wrap: wrap;
+        }
+        
+        .quiz-results {
+            background: var(--branco);
+            padding: var(--espacamento-xl);
+            border-radius: var(--borda-radius);
+            box-shadow: var(--sombra-leve);
+            text-align: center;
+        }
+        
+        .score-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--espacamento-lg);
+            margin-bottom: var(--espacamento-lg);
+            flex-wrap: wrap;
+        }
+        
+        .score-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--verde), var(--amarelo));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--branco);
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: var(--fonte-titulo);
+        }
+        
+        .score-details {
+            text-align: left;
+        }
+        
+        .score-details p {
+            margin-bottom: var(--espacamento-xs);
+            font-size: 1.1rem;
+        }
+        
+        .performance-message {
+            background: var(--cinza-claro);
+            padding: var(--espacamento-md);
+            border-radius: var(--borda-radius);
+            margin-bottom: var(--espacamento-lg);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .performance-message.excellent {
+            background: #e8f5e8;
+            color: var(--verde);
+            border-left: 4px solid var(--verde);
+        }
+        
+        .performance-message.good {
+            background: #fff8e1;
+            color: #f57c00;
+            border-left: 4px solid #f57c00;
+        }
+        
+        .performance-message.average {
+            background: #e3f2fd;
+            color: #1976d2;
+            border-left: 4px solid #1976d2;
+        }
+        
+        .performance-message.needs-improvement {
+            background: #ffeaea;
+            color: var(--vermelho);
+            border-left: 4px solid var(--vermelho);
+        }
+        
+        .detailed-results {
+            text-align: left;
+            margin-bottom: var(--espacamento-lg);
+        }
+        
+        .detailed-results h3 {
+            color: var(--verde);
+            font-family: var(--fonte-titulo);
+            margin-bottom: var(--espacamento-md);
+            text-align: center;
+        }
+        
+        .result-item {
+            background: var(--cinza-claro);
+            padding: var(--espacamento-md);
+            border-radius: var(--borda-radius);
+            margin-bottom: var(--espacamento-sm);
+            border-left: 4px solid var(--cinza-medio);
+        }
+        
+        .result-item.correct {
+            border-left-color: #27ae60;
+            background: #e8f5e8;
+        }
+        
+        .result-item.incorrect {
+            border-left-color: var(--vermelho);
+            background: #ffeaea;
+        }
+        
+        .result-item h4 {
+            color: var(--verde);
+            margin-bottom: var(--espacamento-xs);
+        }
+        
+        .answer-comparison {
+            margin: var(--espacamento-sm) 0;
+        }
+        
+        .answer-comparison p {
+            margin-bottom: var(--espacamento-xs);
+        }
+        
+        .explanation {
+            font-style: italic;
+            color: var(--cinza-medio);
+            margin-top: var(--espacamento-sm);
+        }
+        
+        .quiz-actions {
+            display: flex;
+            gap: var(--espacamento-sm);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        @media (max-width: 768px) {
+            .quiz-container {
+                padding: var(--espacamento-lg) var(--espacamento-sm);
+            }
+            
+            .quiz-header h1 {
+                font-size: 2rem;
+            }
+            
+            .quiz-question-container {
+                padding: var(--espacamento-lg);
+            }
+            
+            .score-display {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .quiz-controls {
+                flex-direction: column;
+            }
+            
+            .quiz-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body class="quiz-page">
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
+    <!-- Header -->
+    <header role="banner">
+        <nav class="navbar" role="navigation" aria-label="Navegação principal">
+            <div class="container">
+                <div class="nav-brand">
+                    <span class="brand-title">Eco da República</span>
+                </div>
+                <ul class="nav-menu" id="nav-menu" role="menubar">
+                    <li role="none"><a href="index.html" class="nav-link" role="menuitem">Início</a></li>
+                    <li role="none"><a href="historia.html" class="nav-link" role="menuitem">História</a></li>
+                    <li role="none"><a href="personagens.html" class="nav-link" role="menuitem">Personagens</a></li>
+                    <li role="none"><a href="documentos.html" class="nav-link" role="menuitem">Documentos</a></li>
+                    <li role="none"><a href="galeria.html" class="nav-link" role="menuitem">Galeria</a></li>
+                    <li role="none"><a href="quiz.html" class="nav-link" role="menuitem" aria-current="page">Quiz</a></li>
+                    <li role="none"><a href="fontes.html" class="nav-link" role="menuitem">Fontes</a></li>
+                    <li role="none"><a href="contato.html" class="nav-link" role="menuitem">Contato</a></li>
+                </ul>
+                <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menu de navegação">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <!-- Page Header -->
+        <section class="page-header" role="banner" aria-labelledby="page-title">
+            <div class="container">
+                <h1 id="page-title">Quiz Interativo</h1>
+                <p>Teste seus conhecimentos sobre a Proclamação da República do Brasil e descubra o quanto você sabe sobre este momento histórico!</p>
+            </div>
+        </section>
+
+        <!-- Quiz Container -->
+        <section class="quiz-section" aria-labelledby="quiz-title">
+            <div class="container">
+                <div class="quiz-container">
+                    <!-- Quiz será inserido aqui pelo JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Proclamação da República</h3>
+                    <p>Site educativo sobre um dos momentos mais importantes da história brasileira.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="historia.html">História</a></li>
+                        <li><a href="personagens.html">Personagens</a></li>
+                        <li><a href="documentos.html">Documentos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Educação</h4>
+                    <ul>
+                        <li><a href="galeria.html">Galeria</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                        <li><a href="fontes.html">Fontes</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Italo&Rakel - Proclamação da República. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js" defer></script>
+    <script src="js/quiz.js" defer></script>
+    <script src="js/a11y.js" defer></script>
+</body>
+</html>

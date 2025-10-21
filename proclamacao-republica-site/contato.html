@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco da República | Contato</title>
+    <meta name="description" content="Eco da República — entre em contato para dúvidas, sugestões ou informações sobre o projeto educativo.">
+    <meta name="keywords" content="contato, dúvidas, sugestões, Proclamação República, educação histórica">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/a11y.css">
+</head>
+<body class="contact-page">
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
+    <!-- Header -->
+    <header role="banner">
+        <nav class="navbar" role="navigation" aria-label="Navegação principal">
+            <div class="container">
+                <div class="nav-brand">
+                    <span class="brand-title">Eco da República</span>
+                </div>
+                <ul class="nav-menu" id="nav-menu" role="menubar">
+                    <li role="none"><a href="index.html" class="nav-link" role="menuitem">Início</a></li>
+                    <li role="none"><a href="historia.html" class="nav-link" role="menuitem">História</a></li>
+                    <li role="none"><a href="personagens.html" class="nav-link" role="menuitem">Personagens</a></li>
+                    <li role="none"><a href="documentos.html" class="nav-link" role="menuitem">Documentos</a></li>
+                    <li role="none"><a href="galeria.html" class="nav-link" role="menuitem">Galeria</a></li>
+                    <li role="none"><a href="quiz.html" class="nav-link" role="menuitem">Quiz</a></li>
+                    <li role="none"><a href="fontes.html" class="nav-link" role="menuitem">Fontes</a></li>
+                    <li role="none"><a href="contato.html" class="nav-link" role="menuitem" aria-current="page">Contato</a></li>
+                </ul>
+                <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menu de navegação">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <!-- Page Header -->
+        <section class="page-header" role="banner" aria-labelledby="page-title">
+            <div class="container">
+                <h1 id="page-title">Entre em Contato</h1>
+                <p>Estamos aqui para ajudar! Entre em contato conosco para dúvidas, sugestões ou informações sobre a Proclamação da República.</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section" aria-labelledby="contact-title">
+            <div class="container">
+                <div class="contact-grid">
+                    <!-- Contact Form -->
+                    <article class="contact-form-container">
+                        <h2 id="contact-title">Envie sua Mensagem</h2>
+                        <form class="contact-form" id="contact-form" novalidate aria-labelledby="contact-title">
+                            <div class="form-group">
+                                <label for="nome">Nome Completo *</label>
+                                <input type="text" 
+                                       id="nome" 
+                                       name="nome" 
+                                       required 
+                                       aria-describedby="nome-error"
+                                       autocomplete="name">
+                                <div id="nome-error" class="form-error" role="alert"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">E-mail *</label>
+                                <input type="email" 
+                                       id="email" 
+                                       name="email" 
+                                       required 
+                                       aria-describedby="email-error"
+                                       autocomplete="email">
+                                <div id="email-error" class="form-error" role="alert"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="telefone">Telefone</label>
+                                <input type="tel" 
+                                       id="telefone" 
+                                       name="telefone" 
+                                       aria-describedby="telefone-error"
+                                       autocomplete="tel">
+                                <div id="telefone-error" class="form-error" role="alert"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="assunto">Assunto *</label>
+                                <select id="assunto" name="assunto" required aria-describedby="assunto-error">
+                                    <option value="">Selecione um assunto</option>
+                                    <option value="duvida">Dúvida sobre conteúdo</option>
+                                    <option value="sugestao">Sugestão de melhoria</option>
+                                    <option value="erro">Reportar erro</option>
+                                    <option value="acessibilidade">Questão de acessibilidade</option>
+                                    <option value="parceria">Proposta de parceria</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                                <div id="assunto-error" class="form-error" role="alert"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="mensagem">Mensagem *</label>
+                                <textarea id="mensagem" 
+                                          name="mensagem" 
+                                          rows="6" 
+                                          required 
+                                          aria-describedby="mensagem-error"
+                                          placeholder="Digite sua mensagem aqui..."></textarea>
+                                <div id="mensagem-error" class="form-error" role="alert"></div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" id="submit-btn">
+                                <span class="btn-text">Enviar Mensagem</span>
+                                <span class="btn-loading" style="display: none;">Enviando...</span>
+                                </button>
+                        </form>
+                    </article>
+
+                    <!-- Contact Info -->
+                    <aside class="contact-info">
+                        <h2>Informações de Contato</h2>
+                        
+                        <div class="contact-item">
+                            <h3>📧 E-mail</h3>
+                            <p><a href="mailto:itallomoreeira@hotmail.com">itallomoreeira@hotmail.com</a></p>
+                        </div>
+
+                        <div class="contact-item">
+                            <h3>📱 WhatsApp</h3>
+                            <p><a href="https://wa.me/5532998222520" target="_blank" rel="noopener">+55 (32) 99822-2520</a></p>
+                        </div>
+
+                        <div class="contact-item">
+                            <h3>📍 Localização</h3>
+                            <p>Juiz de Fora, MG<br>
+                            Brasil</p>
+                    </div>
+                    </aside>
+                </div>
+
+                <!-- FAQ Section -->
+                <section class="faq-section" aria-labelledby="faq-title">
+                    <h2 id="faq-title">Perguntas Frequentes</h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                            <h3>Como posso usar este site educativamente?</h3>
+                            <p>Este site foi desenvolvido para uso educacional. Professores podem utilizar o conteúdo em aulas de história, e estudantes podem explorar os recursos para pesquisas e estudos.</p>
+                    </div>
+                    <div class="faq-item">
+                            <h3>As imagens são livres para uso?</h3>
+                            <p>As imagens históricas são de domínio público ou possuem licenças apropriadas para uso educacional. Consulte as fontes indicadas para mais informações sobre direitos autorais.</p>
+                    </div>
+                    <div class="faq-item">
+                            <h3>Como reportar problemas de acessibilidade?</h3>
+                            <p>Se encontrar alguma barreira de acessibilidade, entre em contato conosco pelo formulário acima, selecionando "Questão de acessibilidade" no assunto.</p>
+                    </div>
+                    <div class="faq-item">
+                            <h3>Posso sugerir melhorias para o site?</h3>
+                            <p>Sim! Suas sugestões são muito bem-vindas. Use o formulário de contato e selecione "Sugestão de melhoria" no assunto.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Proclamação da República</h3>
+                    <p>Site educativo sobre um dos momentos mais importantes da história brasileira.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="historia.html">História</a></li>
+                        <li><a href="personagens.html">Personagens</a></li>
+                        <li><a href="quiz.html">Quiz</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Educação</h4>
+                    <ul>
+                        <li><a href="documentos.html">Documentos</a></li>
+                        <li><a href="galeria.html">Galeria</a></li>
+                        <li><a href="fontes.html">Fontes</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Italo&Rakel - Proclamação da República. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js" defer></script>
+    <script src="js/contact.js" defer></script>
+    <script src="js/a11y.js" defer></script>
+</body>
+</html>

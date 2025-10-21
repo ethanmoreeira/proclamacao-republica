@@ -1,0 +1,26 @@
+{
+  "name": "Eco da República — Proclamação da República do Brasil (1889)",
+  "short_name": "Eco da República",
+  "description": "Site educativo sobre a Proclamação da República do Brasil em 15 de novembro de 1889",
+  "theme_color": "#006400",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "img/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "img/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "categories": ["education", "history", "reference"],
+  "lang": "pt-BR",
+  "dir": "ltr"
+}
